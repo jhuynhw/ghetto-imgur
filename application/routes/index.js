@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 // localhost:3000
 router.get('/', function(req, res, next) {
-  res.sendFile('index.html');
+  res.render('index', {name: "Johnathan Huynh"});
 });
 
 module.exports = router;
