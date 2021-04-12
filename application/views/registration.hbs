@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="public/css/form.css">
+    <script defer type="text/javascript" src="public/js/registration.js"></script>
+    <title>Register Account</title>
+</head>
+<body>
+    <header>
+        <h1 class = "center-title-desc">Register Account</h1>
+    </header>
+    <p>
+    <section class = "center-title-desc">
+        Guests may register for a new account here.
+    </section>
+    </p>
+    <br>
+    <form id="submitform" action="#" >
+    <fieldset>
+        <legend>Create New Account</legend>
+        <label>Username:</label>
+        <input type="text" id="registration_username" name="username"  placeholder="Enter Username" required/>
+        <br>
+        <label>Email:</label>
+        <input type="email" id="registration_email"  name="email" placeholder="Enter Email" required/>
+        <br>
+        <label>Password:</label>
+        <input type="password" id="registration_pass" name="password" placeholder="Enter Password" required/>
+        <br>
+        <label>Confirm Password: </label>
+        <input type="password" id="registration_confirmpass" name="confirmpassword" placeholder="Confirm Password" required/>
+        <p>I am over 13+ years of age.</p>
+        <input type="checkbox" id="registration_ofage" name="ofage" required/>
+        <p>I have read the TOS and Privacy rules below.</p>
+        <input type="checkbox" id="registration_tos" name="readtos" required/>
+        <a href="https://www.youtube.com/watch?v=QTT5iHCHSn0"> TOS and Privacy</a>      
+    </fieldset>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

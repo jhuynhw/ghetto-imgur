@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="public/css/form.css">
+    <title>Post Image</title>
+</head>
+<body>
+    <header>
+        <h1 class = "center-title-desc">Post Image</h1>
+    </header>
+    <p>
+    <section class = "center-title-desc">
+        Form will allow user to import an image from their computer.
+    </section>
+    </p>
+    <br>
+    <form>
+    <fieldset>
+        <legend>Import Image Here</legend>
+            <label>Post Title: </label>
+            <input type="text" id="post_title" name="title" placeholder="Title" required/>
+            <br>
+            <label>Post Description: </label>
+            <input type="text" id="post_desc" name="description" placeholder="Description" required/>
+            <br>
+            <label>Input Image: </label>
+            <input type="file" id="input_image" name="image" placeholder="image" required/>
+            <br>
+            <p>I accept the Acceptable Use Policy for uploading images below.</p>
+            <input type="checkbox" id="agree_policy" name="agreepolicy" required/>
+            <a href="https://www.youtube.com/watch?v=8MX0v7ZZUmw"> Acceptable Use Policy</a>
+    </fieldset>
+        <br>
+        <button type="submit"> Submit</button>
+    </form>
+</body>
+</html>
