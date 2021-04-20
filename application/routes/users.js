@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../config/database');
 
 /* GET users listing. */
 // localhost:3000/users
