@@ -6,7 +6,7 @@ const email = document.getElementById("email")
 
 form.addEventListener("submit", e =>{
     let messages = []
-    e.preventDefault()
+    // e.preventDefault()
     let readyToSubmit = true;
     
     // regex for username criteria
@@ -115,9 +115,9 @@ form.addEventListener("submit", e =>{
         }
 
         else {
-            e.preventDefault()
+            // e.preventDefault()
             alert("🎉 The form was submitted! 🎉");
-            location.reload();
+            // location.reload();
         }
     }
 })
