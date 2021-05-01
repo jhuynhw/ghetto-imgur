@@ -114,10 +114,10 @@ form.addEventListener("submit", e =>{
             alert(messages.join(""));
         }
 
-        else {
-            // e.preventDefault()
-            alert("🎉 The form was submitted! 🎉");
-            // location.reload();
-        }
+        // else {
+        //     // e.preventDefault()
+        //     alert("🎉 The form was submitted! 🎉");
+        //     // location.reload();
+        // }
     }
 })

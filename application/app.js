@@ -1,7 +1,9 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const sessions = require('express-session');
+const mysqlSessions = require('express-mysql-session')(sessions);
 
 //import handlebars
 var handlebars = require('express-handlebars');
@@ -29,6 +31,16 @@ app.engine(
     })
 );
 
+var mysqlSessionStore = new mysqlSessions({/* uses default option */}, require('./config/database'));
+
+app.use(sessions({
+    key: "csid",
+    secret: "super secret key",
+    store: mysqlSessionStore,
+    resave: false,
+    saveUninitialized: false
+}))
+
 // set out express app template engine to handlebars
 app.set("view engine", "hbs");
 app.use(logger('dev'));
@@ -42,6 +54,14 @@ app.use((req, res, next) => {
     requestPrint(req.url);
     next();
 });
+
+app.use((req, res, next) => {
+    console.log(req.session);
+    if(req.session.username) {
+        res.locals.logged = true;
+    }
+    next();
+})
 
 // localhost:3000
 app.use('/', indexRouter);
