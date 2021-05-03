@@ -5,10 +5,10 @@ const Engine = require("../helpers/validation/validation");
 const bcrypt = require('bcrypt');
 const { errorPrint, successPrint } = require('../helpers/debug/debugprinters');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// /* GET users listing. */
+// router.get('/', function(req, res, next) {
+//   res.send('respond with a resource');
+// });
 
 router.post('/register', async (req, res, next) => {
   let {username, email, password, confirmpassword} = req.body;
@@ -25,14 +25,17 @@ router.post('/register', async (req, res, next) => {
     let checkEmail = "SELECT id FROM users WHERE email=?"
     let [r1,  f1] = await db.query(checkUser, [username])
     let [r2,  f2] = await db.query(checkEmail, [email])
+
     if(r1 && r1.length) {
       console.log(`Error: Username already exists`)
-      await res.redirect("/registration")
+      req.flash(`error`, `Username already exists`)
+      await res.render("registration", {title: "Register Account"})
     }
     
     else if(r2 && r2.length) {
       console.log(`Error: Email already exists`)
-      await res.redirect("/registration")
+      req.flash(`error`, `Email already exists`)
+      await res.render("registration", {title: "Register Account"})
     }
 
     // searches mySQL for account details
@@ -41,6 +44,7 @@ router.post('/register', async (req, res, next) => {
       
       if(!(r && r.length)){
         console.log("success")
+        req.flash('success', 'User account has been made')
         res.redirect("/login")
       }
 
@@ -53,6 +57,7 @@ router.post('/register', async (req, res, next) => {
     catch(err) {
       console.log("error caught")
       console.log(err)
+      req.flash('error', err.getMessage())
       res.redirect("/")
     }
 })
@@ -75,21 +80,25 @@ router.post('/register', async (req, res, next) => {
           // adds userId to the session
           req.session.userId = userId;
           res.locals.logged = true;
+          req.flash('success', 'You have been successfully logged in!');
           res.redirect("/")
         }
         else {
           console.log(`Error: Login for user ${username} failed!`)
-          res.redirect("/login")
+          req.flash('error', `Login for user ${username} failed!`);
+          res.render("login", {title: "Login Form"})
         }
       }
       else {
         console.log("Error: User doesnt exist")
-        res.redirect("/login")
+        req.flash('error', 'User doesnt exist');
+        res.render("login", {title: "Login Form"})
       }
   }
   catch(err){
     console.log(`Error: ${err}`)
-    res.redirect("/login")
+    req.flash('error', err.getMessage())
+    res.render("login", {title: "Login Form"})
   }
 
 })

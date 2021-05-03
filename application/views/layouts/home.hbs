@@ -1,6 +1,10 @@
 {{> header}}
 <body>
+
     <header class="center-title-desc">
+        {{#if (emptyObject messages)}}
+        {{> flashmessage}}
+        {{/if}}
         {{> navbar}}
         {{{body}}}
     </header>

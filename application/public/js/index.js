@@ -1,5 +1,4 @@
 let size = 0;
-console.log("testestetst")
 function fadeOutEffect(id) {
   var e = document.getElementById(`${id}`);
   var e1 = setInterval(function () {

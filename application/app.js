@@ -3,13 +3,16 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sessions = require('express-session');
+const flash = require('express-flash');
+
 const mysqlSessions = require('express-mysql-session')(sessions);
 
-//import handlebars
+// //import handlebars
 var handlebars = require('express-handlebars');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 // var dbRouter = require('./routes/dbtest');
+
 var errorPrint = require('./helpers/debug/debugprinters').errorPrint;
 var requestPrint = require('./helpers/debug/debugprinters').requestPrint;
 
@@ -23,10 +26,9 @@ app.engine(
         extname: ".hbs",
         defaultLayout: "home",
         helpers: {
-            /**
-             * if you need more helpers you can
-             * register them here
-             */
+            emptyObject: (obj) => {
+                return !(obj.constructor === Object && Object.keys(obj).length == 0);
+            }
         }
     })
 );
@@ -35,7 +37,7 @@ var mysqlSessionStore = new mysqlSessions({/* uses default option */}, require('
 
 app.use(sessions({
     key: "csid",
-    secret: "super secret key",
+    secret: "supersecretkey",
     store: mysqlSessionStore,
     resave: false,
     saveUninitialized: false
@@ -43,11 +45,13 @@ app.use(sessions({
 
 // set out express app template engine to handlebars
 app.set("view engine", "hbs");
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use("/public", express.static(path.join(__dirname, 'public')));
+app.use(flash());
 
 // prints URL on every request
 app.use((req, res, next) => {
