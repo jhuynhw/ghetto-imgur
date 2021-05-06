@@ -17,7 +17,7 @@
     </section>
     </p>
     <br>
-    <form>
+    <form id="post_image" method="POST" enctype="multipart/form-data" action='/posts/createPost'>
     <fieldset>
         <legend>Import Image Here</legend>
             <label>Post Title: </label>
@@ -27,7 +27,7 @@
             <input type="text" id="post_desc" name="description" placeholder="Description" required/>
             <br>
             <label>Input Image: </label>
-            <input type="file" id="input_image" name="image" placeholder="image" required/>
+            <input type="file" id="input_image" {{!-- name="image" --}} name="uploadImage" placeholder="image" required/>
             <br>
             <p>I accept the Acceptable Use Policy for uploading images below.</p>
             <input type="checkbox" id="agree_policy" name="agreepolicy" required/>

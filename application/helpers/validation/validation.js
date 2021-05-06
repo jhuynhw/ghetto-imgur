@@ -5,8 +5,8 @@ const Engine = {}
 */
 
 // regex for username criteria
-let user1regex = /^[A-Za-z]/;
-let user2regex = /.*[a-zA-Z0-9]{3}/;
+let user1regex = /^[A-Za-z]/; // char from a-z
+let user2regex = /.*[a-zA-Z0-9]{3}/; // must be >=3 alphanumeric char
 let mailFormat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 Engine.validUsername = async (username) =>{
