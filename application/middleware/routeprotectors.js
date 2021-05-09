@@ -1,7 +1,7 @@
 const { errorPrint, successPrint } = require('../helpers/debug/debugprinters');
 const routeProtectors = {};
 
-routeProtectors.userIsLoggedIn = ((req, res, next) => {
+routeProtectors.userIsLoggedIn = function(req, res, next) {
     if(req.session.username) {
         successPrint('User is logged in');
         next();
@@ -11,6 +11,6 @@ routeProtectors.userIsLoggedIn = ((req, res, next) => {
         req.flash('error', 'You must be logged in');
         res.redirect('/login');
     }
-})
+}
 
 module.exports = routeProtectors;

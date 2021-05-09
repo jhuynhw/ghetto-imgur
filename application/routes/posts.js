@@ -10,17 +10,17 @@ const { random } = require('colors');
 const Engine = require("../helpers/validation/validation");
 
 var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, "public/images/uploads");
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         let fileExt = file.mimetype.split('/')[1];
         let randomName = crypto.randomBytes(22).toString("hex");
         cb(null, `${randomName}.${fileExt}`);
     }
 });
 
-var uploader = multer({storage: storage});
+var uploader = multer({ storage: storage });
 
 router.post('/createPost', uploader.single("uploadImage"), async (req, res, next) => {
     let fileUploaded = req.file.path;
@@ -33,39 +33,39 @@ router.post('/createPost', uploader.single("uploadImage"), async (req, res, next
     // console.log(Engine.normalChars(title))
     // console.log("desc")
     // console.log(Engine.normalChars(description))
-    if(!Engine.normalChars(title) ||  !Engine.normalChars(description)){
+    if (!Engine.normalChars(title) || !Engine.normalChars(description)) {
         res.redirect("/postimage")
     }
-    else{
+    else {
         sharp(fileUploaded)
-        .resize(200)
-        .toFile(destinationOfThumbnail)
-        .then(() => {
-            let baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, created, fk_userid) VALUE (?, ?, ?, ?, now(), ?);;';
-            return db.execute(baseSQL, [title, description, fileUploaded, destinationOfThumbnail, fk_userId])
-        })
-        .then(([results, fields]) => {
-            if(results && results.affectedRows) {
-                req.flash('success', "Your post was created successfully!");
-                // can route to individual post later
-                res.redirect('/');
-            }
-            else {
-                throw new PostError('Post could not be created!', '/postimage', 200);
-            }
-        })
-        .catch((err) => {
-            if(err instanceof PostError) {
-                errorPrint(err.getMessage());
-                req.flash('error', err.getMessage());
-                res.status(err.getStatus());
-                res.redirect(err.getRedirectURL());
-            }
-            else {
-                next(err);
-            }
-        })
-    }            
+            .resize(200)
+            .toFile(destinationOfThumbnail)
+            .then(() => {
+                let baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, created, fk_userid) VALUE (?, ?, ?, ?, now(), ?);;';
+                return db.execute(baseSQL, [title, description, fileUploaded, destinationOfThumbnail, fk_userId])
+            })
+            .then(([results, fields]) => {
+                if (results && results.affectedRows) {
+                    req.flash('success', "Your post was created successfully!");
+                    // can route to individual post later
+                    res.redirect('/');
+                }
+                else {
+                    throw new PostError('Post could not be created!', '/postimage', 200);
+                }
+            })
+            .catch((err) => {
+                if (err instanceof PostError) {
+                    errorPrint(err.getMessage());
+                    req.flash('error', err.getMessage());
+                    res.status(err.getStatus());
+                    res.redirect(err.getRedirectURL());
+                }
+                else {
+                    next(err);
+                }
+            })
+    }
 });
 
 module.exports = router;

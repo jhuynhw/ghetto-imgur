@@ -1,5 +1,7 @@
-{{!-- <!DOCTYPE html>
+{{!--
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,32 +9,35 @@
     <link rel="stylesheet" type="text/css" href="public/css/form.css">
     <title>User Login</title>
 </head>
+
 <body>
-    <header class = "center-title-desc"> --}}
+    <header class="center-title-desc"> --}}
         <h1>Login Form</h1>
-    <div class="container">
+        <div class="container">
     </header>
     <p>
-    <section class = "center-title-desc">
-        This login form will require your username and password. Please press submit when finished or reset to start over.
+    <section class="center-title-desc">
+        This login form will require your username and password. Please press submit when finished or reset to start
+        over.
     </section>
     </p>
     <br>
-    <form id="submitform" method="POST" action="/users/login"
-    enctype="application/x-www-form-urlencoded">
-    <fieldset>
-    <legend>Login</legend>
+    <form id="submitform" method="POST" action="/users/login" enctype="application/x-www-form-urlencoded">
+        <fieldset>
+            <legend>Login</legend>
 
-        <label>Username:</label>
-        <input type="text" id="login_username" name="username" placeholder="Enter Username" required/>
+            <label>Username:</label>
+            <input type="text" id="login_username" name="username" placeholder="Enter Username" required />
+            <br>
+            <label>Password: </label>
+            <input type="password" id="login_pass" name="password" placeholder="Enter Password" required />
+        </fieldset>
         <br>
-        <label>Password: </label>
-        <input type="password" id="login_pass" name="password" placeholder="Enter Password" required/>
-    </fieldset>
-    <br>
-    <button type="submit">Submit</button>
-    <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
     </form>
-</div>
-{{!-- </body>
+    </div>
+    {{!--
+</body>
+
 </html> --}}

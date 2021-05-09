@@ -1,5 +1,7 @@
-{{!-- <!DOCTYPE html>
+{{!--
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +9,34 @@
     <link rel="stylesheet" type="text/css" href="public/css/form.css">
     <title>View Post</title>
 </head>
+
 <body>
-    <header class = "center-title-desc"> --}}
+    <header class="center-title-desc"> --}}
         <h1>View Post</h1>
-    <div class="container">
+        <div class="container">
     </header>
     <p>
-    <section class = "center-title-desc">
+    <section class="center-title-desc">
         View individual image post below.
     </section>
     </p>
-    <div class = "viewimg-border">
-        <section><u>Post Title</u></section>
+    <div class="viewimg-border">
+        {{!-- Post Title --}}
+        <section><u><h2>{{currentPost.title}}</h2></u></section>
         <br>
-        <section>Author</section>
+        {{!-- Author --}}
+        <section><h3>{{currentPost.username}}</h3></section>
         <br>
-        <section>Creation Time: 24:00</section>
+        {{!-- Creation Time --}}
+        <section><h4>{{currentPost.created}}</h4></section>
         <br>
-        <img src="https://media.tenor.com/images/fcce3bdb396e1de1467334c69a231424/tenor.gif" alt="got_Eem.img">
+        <br>
+        <img src="/{{currentPost.photopath}}" alt="Image could not be loaded">
+        {{!-- Description --}}
+        <section><h3>{{currentPost.description}}</h3></section>
     </div>
-</div>
-{{!-- </body>
+    </div>
+    {{!--
+</body>
+
 </html> --}}
