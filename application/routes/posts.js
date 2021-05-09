@@ -68,4 +68,83 @@ router.post('/createPost', uploader.single("uploadImage"), async (req, res, next
     }
 });
 
+// localhost:3000/posts/search?search=value
+// router.get('/search', (req, res, next) => {
+//     let searchTerm = req.query.search;
+//     if (!searchTerm) {
+//         res.send({
+//             resultsStatus: "info",
+//             message: "No search term given",
+//             results: []
+//         });
+//     }
+//     else {
+//         let baseSQL = "SELECT id, title, description, thumbnail, concat_ws(' ', title, description) AS haystack \
+//         FROM posts \
+//         HAVING haystack like ?;"
+//         let sqlReadySearchTerm = "%" + searchTerm + "%";
+//         db.execute(baseSQL, [sqlReadySearchTerm])
+//             .then(([results, fields]) => {
+//                 if (results && results.length) {
+//                     res.send({
+//                         resultsStatus: "info",
+//                         message: `${results.length} results founds`,
+//                         results: results
+//                     })
+//                 }
+//                 else {
+//                     db.query('SELECT id, title, description, \
+//                      thumbnail, created FROM posts ORDER BY created DESC LIMIT 8', [])
+//                         .then(([results, fields]) => {
+//                             res.send({
+//                                 resultsStatus: "info",
+//                                 message: "No results were found for your search but here are the 8 most recent posts",
+//                                 results: results
+//                             })
+//                         })
+//                 }
+//             })
+//             .catch((err) => next(err))
+//     }
+// });
+
+router.get('/search', async (req, res, next) => {
+    try {
+        let searchTerm = req.query.search;
+        if (!searchTerm) {
+            res.send({
+                resultsStatus: "info",
+                message: "No search term given",
+                results: []
+            });
+        }
+        else {
+            let baseSQL = "SELECT id, title, description, thumbnail, concat_ws(' ', title, description) AS haystack \
+        FROM posts \
+        HAVING haystack like ?;"
+            let sqlReadySearchTerm = "%" + searchTerm + "%";
+            let [results, fields] = await db.execute(baseSQL, [sqlReadySearchTerm]);
+            if (results && results.length) {
+                res.send({
+                    resultsStatus: "info",
+                    message: `${results.length} results founds`,
+                    results: results
+                })
+            }
+            else {
+                let [results, fields] = await db.query('SELECT id, title, description, \
+                thumbnail, created FROM posts ORDER BY created DESC LIMIT 8', []);
+                res.send({
+                    resultsStatus: "info",
+                    message: "No results were found for your search but here are the 8 most recent posts",
+                    results: results
+                })
+            }
+        }
+    }
+    catch (err) {
+        next(err);
+    }
+});
+
 module.exports = router;
