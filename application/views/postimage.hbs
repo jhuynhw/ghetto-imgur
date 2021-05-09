@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="public/css/form.css">
-    <title>Post Image</title>
+    <link rel="stylesheet" type="text/css" href="public/css/form.css"> --}}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    {{!-- <title>Post Image</title>
 </head>
 <body>
     <header class = "center-title-desc"> --}}
         <h1>Post Image</h1>
+    <div class="container">
     </header>
     <p>
     <section class = "center-title-desc">
@@ -17,7 +19,11 @@
     </section>
     </p>
     <br>
-    <form id="post_image" method="POST" enctype="multipart/form-data" action='/posts/createPost'>
+    <form
+        id="post_image"
+        method="POST"
+        enctype="multipart/form-data">
+        <!-- action='/posts/createPost'> -->
     <fieldset>
         <legend>Import Image Here</legend>
             <label>Post Title: </label>
@@ -36,5 +42,6 @@
         <br>
         <button type="submit"> Submit</button>
     </form>
+</div>
 {{!-- </body>
 </html> --}}
