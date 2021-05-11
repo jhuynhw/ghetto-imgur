@@ -4,7 +4,7 @@ const db = require('../config/database');
 const Engine = require("../helpers/validation/validation");
 const bcrypt = require('bcrypt');
 const { errorPrint, successPrint } = require('../helpers/debug/debugprinters');
-
+const UserModel = require("../models/Users");
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('respond with a resource');
@@ -63,44 +63,37 @@ router.post('/register', async (req, res, next) => {
 })
 
 router.post('/login', async (req, res, next) => {
-  let { username, password } = req.body
-  try {
-    // will this work
-    // let base = "SELECT * FROM users WHERE username=?;";
-    let base = "SELECT id, username, password FROM users WHERE username=?;";
-    let userId;
-    let [r, f] = await db.query(base, [username]);
+  let { username, password } = req.body;
 
-    if (r && r.length) {
-      userId = r[0].id;
-      if (await bcrypt.compare(password, r[0].password)) {
-        console.log(`User ${username} has been logged in!`)
-        // initialize users session
+  if (!Engine.validUsername(username)) res.redirect("/login")
+
+  if (!(await UserModel.usernameExists(username))) {
+    //user doesnt exists
+    console.log("Error: User doesnt exist");
+    req.flash('error', 'User doesnt exist');
+    res.redirect("/login")
+  }
+  else {
+    try {
+      let userid = await UserModel.authenticate(username, password)
+      console.log(userid)
+      if (userid) {
         req.session.username = username;
-        // adds userId to the session
-        req.session.userId = userId;
+        req.session.userId = userid;
         res.locals.logged = true;
         req.flash('success', 'You have been successfully logged in!');
         res.redirect("/")
       }
       else {
-        console.log(`Error: Login for user ${username} failed!`)
         req.flash('error', `Login for user ${username} failed!`);
-        res.render("login", { title: "Login Form" })
+        res.redirect("/login")
       }
-    }
-    else {
-      console.log("Error: User doesnt exist")
-      req.flash('error', 'User doesnt exist');
-      res.render("login", { title: "Login Form" })
+    } catch (err) {
+      console.log(err)
+      req.flash('error', err.getMessage())
+      res.redirect("/login")
     }
   }
-  catch (err) {
-    console.log(`Error: ${err}`)
-    req.flash('error', err.getMessage())
-    res.render("login", { title: "Login Form" })
-  }
-
 })
 
 router.post('/logout', (req, res, next) => {

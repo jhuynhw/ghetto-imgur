@@ -130,7 +130,7 @@ input {
     padding-bottom: .05em;
     padding-left: 1em;
     padding-right: 1em;
-    gap: 2.5% 2.5%;
+    gap: 2.5% 0%;
     justify-items: center;
     grid-auto-rows: 1fr;
     grid-auto-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -143,8 +143,8 @@ input {
 }
 
 .card {
-    width: 355px;
-    height: 300px;
+    width: 250px;
+    height: 315px;
     padding: 30px;
 }
 
