@@ -13,26 +13,101 @@
 <body>
     <header class="center-title-desc"> --}}
         <h1>View Post</h1>
-        <div class="container">
+        {{!-- <div class="container imgPostGrid"> --}}
     </header>
-    {{!-- <p>
-    <section class="center-title-desc"></section>
-    </p> --}}
-    <div class="viewimg-border">
-        {{!-- Post Title --}}
-        <section><h2>{{currentPost.title}}</h2></section>
-        <br>
-        {{!-- Author --}}
-        <section><h3>{{currentPost.username}}</h3></section>
-        <br>
-        {{!-- Creation Time --}}
-        <section><h4>{{currentPost.created}}</h4></section>
-        <br>
-        <br>
-        <img src="/{{currentPost.photopath}}" alt="Image could not be loaded">
-        {{!-- Description --}}
-        <section><h3>{{currentPost.description}}</h3></section>
-    </div>
+    <div class="container imgPostGrid">
+        {{!-- <p>
+        <section class="center-title-desc"></section>
+        </p> --}}
+        <div class="viewimg-border">
+            {{!-- Photopath --}}
+            {{!-- <div class="imgItem"><img src="/{{currentPost.photopath}}" alt="Image could not be loaded"></div>
+            <br>
+            <div class="imgInfo"> --}}
+                {{!-- Post Title --}}
+                {{!-- <section>
+                    <h2>{{currentPost.title}}</h2>
+                </section>
+                <br> --}}
+                {{!-- Author --}}
+                {{!-- <section>
+                    <h3>{{currentPost.username}}</h3>
+                </section>
+                <br> --}}
+                {{!-- Creation Time --}}
+                {{!-- <section>
+                    <h4>{{currentPost.created}}</h4>
+                </section>
+                <br> --}}
+                {{!-- Description --}}
+                {{!-- <section>
+                    <h3>{{currentPost.description}}</h3>
+                </section>
+            </div> --}}
+
+            {{!-- Post Title --}}
+            <section>
+                <h2>{{currentPost.title}}</h2>
+            </section>
+            <br>
+            {{!-- Photopath --}}
+            <div class="imgItem"><img src="/{{currentPost.photopath}}" alt="Image could not be loaded"></div>
+            <br>
+            {{!-- Author --}}
+            <section>
+                <h4>@{{currentPost.username}}</h4>
+            </section>
+            <br>
+            {{!-- Creation Time --}}
+            <section>
+                <h5>{{currentPost.created}}</h5>
+            </section>
+            <br>
+            {{!-- Description --}}
+            <section>
+                <h4>{{currentPost.description}}</h4>
+            </section>
+
+        </div>
+
+        <div class="comments">
+            <div id="comment-container">
+                <div id="messages">
+                    <div id="message-">
+                        <strong class="author-text">@myuser12</strong>
+                        <span class="date-posted">30 minutes</span>
+                        <div class="comment-text">This is front-end test for styling comments</div>
+                        <strong class="author-text">@myuser12</strong>
+                        <span class="date-posted">30 minutes</span>
+                        <div class="comment-text">This is front-end test for styling comments</div>
+                        <strong class="author-text">@myuser12</strong>
+                        <span class="date-posted">30 minutes</span>
+                        <div class="comment-text">This is front-end test for styling comments</div>
+                        <strong class="author-text">@myuser12</strong>
+                        <span class="date-posted">30 minutes</span>
+                        <div class="comment-text">This is front-end test for styling comments</div>
+                        <strong class="author-text">@myuser12</strong>
+                        <span class="date-posted">30 minutes</span>
+                        <div class="comment-text">This is front-end test for styling comments</div>
+                        <strong class="author-text">@myuser12</strong>
+                        <span class="date-posted">30 minutes</span>
+                        <div class="comment-text">This is front-end test for styling comments</div>
+                    </div>
+                    {{!-- {{log this}} --}}
+                    {{!-- {{#each currentPost.comments}}
+                    {{> comment this}}
+                    {{/each}} --}}
+                </div>
+
+                <div id="comment-box">
+                    <textarea id="comment-box-text" class="form-control" placeholder="Enter Comment"></textarea>
+                    <span id="comment-box-button" class="input-group-text" aria-hidden="true" style="font-size: 40px;">
+                        <i class="fa fa-comments"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
     </div>
     {{!--
 </body>

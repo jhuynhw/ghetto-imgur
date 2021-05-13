@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var isLoggedIn = require('../middleware/routeprotectors').userIsLoggedIn;
-const {getRecentPosts, getPostById} = require('../middleware/postsmiddleware');
+const {getRecentPosts, getPostById, getCommentsByPostId} = require('../middleware/postsmiddleware');
 const db = require('../config/database');
 
 /* GET home page. */
@@ -24,7 +24,7 @@ router.get('/postimage', isLoggedIn, (req, res, next) => {
   res.render("postimage", { title: "Post Image" });
 });
 
-router.get("/post/:id(\\d+)", getPostById, (req, res, next) => {
+router.get("/post/:id(\\d+)", getPostById, getCommentsByPostId, (req, res, next) => {
   res.render('imagepost', { title: `Post ${req.params.id}` });
   // let baseSQL = "SELECT u.username, p.title, p.description, p.photopath, p.created \
   // FROM users u \

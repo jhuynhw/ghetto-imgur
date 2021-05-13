@@ -96,6 +96,8 @@ input {
     width: 35%;
     margin-left: auto !important;
     margin-right: auto !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 14px !important;
 }
 
 /* Grid Container */
@@ -121,6 +123,8 @@ input {
     margin: 45px auto auto auto;
     margin-left: 15px;
     margin-right: 15px;
+    grid-template-areas:
+    "viewimg-border comments";
 }
 
 .image_grid {
@@ -136,6 +140,8 @@ input {
     grid-auto-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
     grid-template-areas: 
     "card card card card"
     "card card card card"
@@ -146,7 +152,116 @@ input {
     width: 250px;
     height: 315px;
     padding: 30px;
+    border-radius: 15px;
+    border-style: double;
+    border-width: 2.5px;
 }
+
+.imagePostGrid {
+    padding-top: .25em;
+    padding-bottom: .25em;
+    display: grid;
+    gap: .2rem .2rem;
+    justify-items: center;
+    grid-auto-rows: 1fr;
+    grid-auto-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+}
+
+#comment-box {
+    grid-area: comment-box;
+    padding: 0.2rem;
+    display: flex;
+    width: 100%;
+    padding-left: 0.2rem;
+    border-radius: 0.35rem;
+}
+
+#comment-box-button {
+    padding: .25rem;
+    margin: .25rem;
+    line-height: 2;
+    font-size: 1.5rem;
+}
+
+#comment-container {
+     display: grid;
+     justify-self: stretch;
+     grid-area: comments;
+     grid-template-rows: auto 75px;
+     grid-template-columns: 1fr;
+     gap: 1rem;
+     grid-template-areas: 
+     "messages"
+     "comment-box";
+     max-height: 80vh;
+     padding-right: 2rem;
+}
+
+#comment-box-text {
+     justify-self: start;
+     width: 80%;
+     height: 115%;
+     font-family: 'Georgia', Georgia, monospace;
+     font-size: 18px;
+     padding: 1px;
+ }
+
+#comment-box-button {
+    color: wheat;
+    width: 5%;
+    height: 100%;
+    border-radius: 10px;
+    float: right;
+    border-color: black;
+    display: flex;
+    align-items: center;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+ }
+
+#comment-box-button:hover {
+    background: #24252A;
+    cursor: pointer;
+}
+
+#messages {
+    grid-area: messages;
+    overflow-y: auto;
+    display:flex;
+    flex-flow: column-reverse nowrap;
+    scroll-behavior: smooth;
+    border-radius: 15px !important;
+    border-style: double !important;
+    border-width: 5px !important;
+    box-shadow: 2px 2px 2px lightgray !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 14px !important;
+    text-align: left;
+    width: 85%;
+    line-height: 2.5;
+    background-color: #161616;
+}
+
+.author-text {
+    color: #f5f5f5;
+}
+
+/* div[id^=messages-] {
+    display: grid;
+    grid-template-rows: .3fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: .2em;
+    padding: .25rem;
+    margin: .2rem;
+    font-size: 1rem;
+    border: .0625rem solid #ced4da;
+    grid-template-areas:
+    "author created"
+    "comment comment";
+} */
 
 img#image {
     width: 300px;
@@ -192,10 +307,16 @@ img#image {
     text-align: center; 
 }
 
-div.viewimg-border, div.card {
+div.viewimg-border, div.card, #comment-box-text {
     background-color: #161616;
     border-radius: 1.5em;
 }
+
+#comment-box-text {
+    background-color: #161616;
+    border-radius: .5em;
+    color: white;
+;}
 
 div.card {
     outline-color: #edf0f1;
