@@ -25,6 +25,7 @@ CommentModel.getCommentsForPost = (postId) => {
     ORDER BY c.created DESC`;
     return db.query(baseSQL, [postId])
     .then(([results, fields]) => {
+        console.log(results);
         return Promise.resolve(results);
     })
     .catch((err) => Promise.reject(err));

@@ -211,7 +211,7 @@ input {
 
 #comment-box-button {
     color: wheat;
-    width: 5%;
+    width: 50px;
     height: 100%;
     border-radius: 10px;
     float: right;
@@ -234,22 +234,22 @@ input {
     flex-flow: column-reverse nowrap;
     scroll-behavior: smooth;
     border-radius: 15px !important;
-    border-style: double !important;
-    border-width: 5px !important;
-    box-shadow: 2px 2px 2px lightgray !important;
+    border-style: solid !important;
+    border-width: 1px !important;
     font-family: "Montserrat", sans-serif !important;
     font-size: 14px !important;
     text-align: left;
     width: 85%;
     line-height: 2.5;
     background-color: #161616;
+    height: 500px;
 }
 
 .author-text {
     color: #f5f5f5;
 }
 
-/* div[id^=messages-] {
+div[id^=message-] {
     display: grid;
     grid-template-rows: .3fr 1fr;
     grid-template-columns: 1fr 1fr;
@@ -261,7 +261,11 @@ input {
     grid-template-areas:
     "author created"
     "comment comment";
-} */
+}
+
+span.date-posted {
+    text-align: right;
+}
 
 img#image {
     width: 300px;

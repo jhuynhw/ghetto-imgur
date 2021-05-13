@@ -25,7 +25,7 @@ router.get('/postimage', isLoggedIn, (req, res, next) => {
 });
 
 router.get("/post/:id(\\d+)", getPostById, getCommentsByPostId, (req, res, next) => {
-  res.render('imagepost', { title: `Post ${req.params.id}` });
+  res.render('imagepost', { data: res.locals.currentPost, title: `Post ${req.params.id}` });
   // let baseSQL = "SELECT u.username, p.title, p.description, p.photopath, p.created \
   // FROM users u \
   // JOIN posts p \
