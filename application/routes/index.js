@@ -7,8 +7,6 @@ const db = require('../config/database');
 /* GET home page. */
 // / --> localhost:3000
 router.get('/', getRecentPosts, function (req, res, next) {
-  // test error page
-  // next(new Error('test'));
   res.render('index', { title: "Home Page", javascript: true });
 });
 

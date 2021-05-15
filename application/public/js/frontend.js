@@ -53,7 +53,6 @@ function executeSearch() {
                 newMainContentHTML += createCard(row);
             });
             mainContent.innerHTML = newMainContentHTML;
-            // console.log(newMainContentHTML);
             if (data_json.message) {
                 addFlashFromFrontEnd(data_json.message);
             }

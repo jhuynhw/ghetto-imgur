@@ -68,7 +68,7 @@ router.post('/login', async (req, res, next) => {
   if (!Engine.validUsername(username)) res.redirect("/login")
 
   if (!(await UserModel.usernameExists(username))) {
-    //user doesnt exists
+    //user doesn't exist
     console.log("Error: User doesnt exist");
     req.flash('error', 'User doesnt exist');
     res.redirect("/login")

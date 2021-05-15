@@ -14,7 +14,6 @@ UserModel.create = async (username, password, email) => {
     }
 }
 
-// not sure if im refactoring right here
 UserModel.usernameExists = async username => {
     try { 
         let [r, f] = await db.execute("SELECT id FROM users WHERE username=?", [username])

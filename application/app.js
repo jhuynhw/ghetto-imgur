@@ -7,7 +7,7 @@ const flash = require('express-flash');
 
 const mysqlSessions = require('express-mysql-session')(sessions);
 
-// //import handlebars
+// import handlebars
 var handlebars = require('express-handlebars');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

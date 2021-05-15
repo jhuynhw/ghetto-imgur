@@ -31,10 +31,6 @@ router.post('/createPost', uploader.single("uploadImage"), async (req, res, next
     let title = req.body.title;
     let description = req.body.description;
     let fk_userId = req.session.userId;
-    // console.log("title")
-    // console.log(Engine.normalChars(title))
-    // console.log("desc")
-    // console.log(Engine.normalChars(description))
     if (!Engine.normalChars(title) || !Engine.normalChars(description)) {
         res.redirect("/postimage")
     }
@@ -52,7 +48,6 @@ router.post('/createPost', uploader.single("uploadImage"), async (req, res, next
                 // if (results && results.affectedRows) {
                 if (postWasCreated) {
                     req.flash('success', "Your post was created successfully!");
-                    // can route to individual post later
                     res.redirect('/');
                 }
                 else {
