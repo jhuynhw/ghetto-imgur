@@ -21,7 +21,7 @@ router.post('/create', (req, res, next) => {
             .then((wasSuccessful) => {
                 if (wasSuccessful != -1) {
                     successPrint(`comment was created for ${username}`);
-                    res.jsonI({
+                    res.json({
                         code: 1,
                         status: "success",
                         message: "comment created",
